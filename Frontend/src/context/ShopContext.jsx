@@ -2,7 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-import { authDataContext } from "./authContext";
+import { authDataContext } from "./AuthContext";
 import { userDataContext } from "./userContext";
 
 export const shopDataContext = createContext();
