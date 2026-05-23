@@ -20,7 +20,7 @@ app.use(express.json())
 app.use(cookieParser())
 
   app.use (cors({
-    origin:["https://e-commerce-one-cart-frontendt.onrender.com" ,"http://localhost:5174"],
+    origin:["https://e-commerce-one-cart-frontendt.onrender.com" ,"https://e-commerce-one-cart-admin-latest.onrender.com"],
     credentials:true
 
   }) )
