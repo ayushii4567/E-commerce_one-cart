@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import Title from "../component/Title";
+import Title from "../Component/Title";
 import { shopDataContext } from "../context/ShopContext";
 import { useNavigate } from "react-router-dom";
 import { RiDeleteBin6Line } from "react-icons/ri";
