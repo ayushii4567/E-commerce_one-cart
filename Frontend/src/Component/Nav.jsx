@@ -11,7 +11,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 
 import { userDataContext } from "../context/userContext";
-import { authDataContext } from "../context/authContext";
+import { authDataContext } from "../context/AuthContext";
 import { shopDataContext } from "../context/ShopContext";
 import { toast } from "react-toastify";
 
