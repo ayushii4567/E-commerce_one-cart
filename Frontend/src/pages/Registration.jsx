@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import google from "../assets/google.png";
 import { IoEyeOutline, IoEye } from "react-icons/io5";
 import axios from "axios";
-import { authDataContext } from "../context/authContext";
+import { authDataContext } from "../context/AuthContext";
 import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../../utils/firebase";
 import { userDataContext } from "../context/userContext";
