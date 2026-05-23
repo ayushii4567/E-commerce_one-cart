@@ -1,5 +1,5 @@
 import React from 'react'
-import Title from '../component/Title'
+import Title from '../Component/Title'
 import contact from "../assets/contact.jpg"
 import NewLetterBox from '../component/NewLetterBox'
 import Footer from '../Component/Footer'
