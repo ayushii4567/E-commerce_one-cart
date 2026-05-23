@@ -6,7 +6,7 @@ import google from "../assets/google.png";
 import { IoEyeOutline, IoEye } from "react-icons/io5";
 import { authDataContext } from "../context/AuthContext"; // adjust path if needed
 import { signInWithPopup } from "firebase/auth";
-import { auth, provider } from "../../utils/firebase";
+import { auth, provider } from "../../utils/Firebase";
 import { userDataContext } from "../context/userContext.jsx";
 import { toast } from "react-toastify";
 
