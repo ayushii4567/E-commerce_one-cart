@@ -4,7 +4,7 @@ import axios from "axios";
 import Logo from "../assets/vcart logo.png";
 import google from "../assets/google.png";
 import { IoEyeOutline, IoEye } from "react-icons/io5";
-import { authDataContext } from "../context/authContext"; // adjust path if needed
+import { authDataContext } from "../context/AuthContext"; // adjust path if needed
 import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../../utils/firebase";
 import { userDataContext } from "../context/userContext.jsx";
