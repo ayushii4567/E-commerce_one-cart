@@ -6,7 +6,7 @@ import { IoEyeOutline, IoEye } from "react-icons/io5";
 import axios from "axios";
 import { authDataContext } from "../context/AuthContext";
 import { signInWithPopup } from "firebase/auth";
-import { auth, provider } from "../../utils/firebase";
+import { auth, provider } from "../../utils/Firebase";
 import { userDataContext } from "../context/userContext";
 import { toast } from "react-toastify";
 
