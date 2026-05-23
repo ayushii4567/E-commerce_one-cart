@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import Title from "../Component/Title";
-import CartTotal from "../component/CartTotal";
+import CartTotal from "../Component/CartTotal";
 import razorpay from "../assets/Razorpay.jpg";
 import { shopDataContext } from "../context/ShopContext";
 import { authDataContext } from "../context/AuthContext";
