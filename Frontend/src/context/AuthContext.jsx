@@ -3,7 +3,7 @@ import { createContext } from "react";
 export const authDataContext = createContext();
 
 function AuthContext({ children }) {
-  const serverUrl = "http://localhost:8000";
+  const serverUrl = "https://e-commerce-one-cart-backend.onrender.com";
 
   return (
     <authDataContext.Provider value={{ serverUrl }}>
