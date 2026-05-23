@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { FaChevronRight, FaChevronDown } from "react-icons/fa";
 import Title from "../Component/Title";
 import { shopDataContext } from "../context/ShopContext";
-import Card from "../component/Card";
+import Card from "../Component/Card";
 import Footer from "../Component/Footer";
 
 function Collections() {
