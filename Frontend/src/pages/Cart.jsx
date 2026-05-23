@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { userDataContext } from "../context/userContext";
 
-import CartTotal from "../component/CartTotal";
+import CartTotal from "../Component/CartTotal";
 
 function Cart() {
   const { products, currency, cartItem, updateQuantity } =
