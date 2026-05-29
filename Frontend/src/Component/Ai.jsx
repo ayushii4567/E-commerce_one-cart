@@ -63,17 +63,23 @@ function Ai() {
 
     const recognition = new SpeechRecognition();
 
+const recognition = new SpeechRecognition();
+
+recognition.onstart = () => {
+  console.log("Voice Started");
+};
+
+
+
     // ===================== SETTINGS =====================
 
-    recognition.continuous = false;
+   recognition.continuous = false;
 
-    // important for clean result
-    recognition.interimResults = false;
+recognition.interimResults = true;
 
-    // hindi + english support
-    recognition.lang = "hi-IN";
+recognition.lang = "hi-IN";
 
-    recognition.maxAlternatives = 1;
+recognition.maxAlternatives = 1;
 
     // ===================== RESULT =====================
 
@@ -417,15 +423,18 @@ function Ai() {
       setActiveAi(false);
 
       if (event.error !== "no-speech") {
-        toast.error("Voice Recognition Error");
+      toast.error(`Voice Error: ${event.error}`);
       }
     };
 
     // ===================== END =====================
 
     recognition.onend = () => {
-      setActiveAi(false);
-    };
+
+  console.log("Voice Ended");
+
+  setActiveAi(false);
+};
 
     recognitionRef.current = recognition;
 
@@ -449,15 +458,33 @@ function Ai() {
       });
 
       if (recognitionRef.current) {
-        recognitionRef.current.stop();
+        
 
-        setTimeout(() => {
-          recognitionRef.current.start();
+setTimeout(() => {
 
-          openingSound.play();
+  try {
 
-          setActiveAi(true);
-        }, 200);
+    if (recognitionRef.current) {
+
+      recognitionRef.current.start();
+
+      openingSound.play().catch(() => {});
+
+      setActiveAi(true);
+    }
+
+  } catch (err) {
+
+    console.log(err);
+
+    toast.error("Voice Start Failed");
+  }
+
+}, 300);
+
+
+
+
       }
     } catch (error) {
       console.log(error);
