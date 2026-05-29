@@ -6,12 +6,17 @@ import { useContext } from "react";
 import { authDataContext } from "../context/AuthContext";
 import { useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { adminDataContext } from "../context/AdminContext";
 
 function Home() {
   const [totalProducts, setTotalProducts] = useState(0);
   const [totalOrders, setTotalOrders] = useState(0);
 
   const { serverUrl } = useContext(authDataContext);
+  const { adminData } = useContext(adminDataContext);
+
+const navigate = useNavigate();
 
  const fetchCounts = async () => {
     try {
@@ -39,9 +44,16 @@ function Home() {
     }
 }
 
-  useEffect(() => {
-    fetchCounts();
-  }, []);
+ useEffect(() => {
+
+  if (!adminData) {
+    navigate("/login");
+    return;
+  }
+
+  fetchCounts();
+
+}, [adminData]);
 
   return (
     <div className="w-[100vw] h-[100vh] bg-gradient-to-l from-[#141414] to-[#0c2025] text-[white] relative">

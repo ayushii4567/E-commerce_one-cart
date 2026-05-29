@@ -39,9 +39,9 @@ function Login() {
 
       toast.success("Admin Login Successfully");
 
-      getAdmin();
+      await getAdmin();
 
-      navigate("/");
+navigate("/");
     } catch (error) {
       console.log(error);
 
@@ -73,6 +73,7 @@ function Login() {
           <div className="w-[90%] h-[400px] flex flex-col items-center justify-center gap-[15px] relative">
             <input
               type="email"
+               autoComplete="off"
               className="w-full h-[50px] border-2 border-[#96969635] backdrop-blur-sm rounded-lg shadow-lg bg-transparent placeholder-[#ffffffc7] px-[20px] font-semibold"
               placeholder="Email"
               onChange={(e) => setEmail(e.target.value)}
@@ -82,6 +83,7 @@ function Login() {
             <div className="w-full relative">
               <input
                 type={show ? "text" : "password"}
+                 autoComplete="new-password"
                 className="w-full h-[50px] border-2 border-[#96969635] backdrop-blur-sm rounded-lg shadow-lg bg-transparent placeholder-[#ffffffc7] px-[20px] pr-[50px] font-semibold"
                 placeholder="Password"
                 onChange={(e) => setPassword(e.target.value)}
