@@ -1,10 +1,4 @@
-import React, {
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 
 import ai from "../assets/a2.png";
 import open from "../assets/open.mp3";
@@ -63,30 +57,24 @@ function Ai() {
 
     const recognition = new SpeechRecognition();
 
-const recognition = new SpeechRecognition();
-
-recognition.onstart = () => {
-  console.log("Voice Started");
-};
-
-
+    recognition.onstart = () => {
+      console.log("Voice Started");
+    };
 
     // ===================== SETTINGS =====================
 
-   recognition.continuous = false;
+    recognition.continuous = false;
 
-recognition.interimResults = true;
+    recognition.interimResults = false;
 
-recognition.lang = "hi-IN";
+    recognition.lang = "en-IN";
 
-recognition.maxAlternatives = 1;
+    recognition.maxAlternatives = 1;
 
     // ===================== RESULT =====================
 
     recognition.onresult = (event) => {
-      let transcript = event.results[0][0].transcript
-        .toLowerCase()
-        .trim();
+      let transcript = event.results[0][0].transcript.toLowerCase().trim();
 
       // clean transcript
       transcript = transcript.replace(/\s+/g, " ");
@@ -120,7 +108,6 @@ recognition.maxAlternatives = 1;
       }
 
       // ===================== SEARCH CLOSE =====================
-
       else if (
         hasCommand(transcript, [
           "close search",
@@ -140,7 +127,6 @@ recognition.maxAlternatives = 1;
       }
 
       // ===================== HOME =====================
-
       else if (
         hasCommand(transcript, [
           "home",
@@ -165,7 +151,6 @@ recognition.maxAlternatives = 1;
       }
 
       // ===================== ABOUT =====================
-
       else if (
         hasCommand(transcript, [
           "about",
@@ -188,7 +173,6 @@ recognition.maxAlternatives = 1;
       }
 
       // ===================== COLLECTIONS =====================
-
       else if (
         hasCommand(transcript, [
           "collection",
@@ -218,7 +202,6 @@ recognition.maxAlternatives = 1;
       }
 
       // ===================== CONTACT =====================
-
       else if (
         hasCommand(transcript, [
           "contact",
@@ -242,7 +225,6 @@ recognition.maxAlternatives = 1;
       }
 
       // ===================== CART =====================
-
       else if (
         hasCommand(transcript, [
           "cart",
@@ -256,7 +238,7 @@ recognition.maxAlternatives = 1;
           "कार्ट",
           "माय कार्ट",
           "ओपन कार्ट",
-           "ओपन कार्ड"
+          "ओपन कार्ड",
         ])
       ) {
         speak("Opening Cart");
@@ -267,7 +249,6 @@ recognition.maxAlternatives = 1;
       }
 
       // ===================== ORDERS =====================
-
       else if (
         hasCommand(transcript, [
           "order",
@@ -291,7 +272,6 @@ recognition.maxAlternatives = 1;
       }
 
       // ===================== PLACE ORDER =====================
-
       else if (
         hasCommand(transcript, [
           "checkout",
@@ -311,10 +291,7 @@ recognition.maxAlternatives = 1;
         setShowSearch(false);
       }
 
-      
-
       // ===================== SCROLL DOWN =====================
-
       else if (
         hasCommand(transcript, [
           "scroll down",
@@ -334,7 +311,6 @@ recognition.maxAlternatives = 1;
       }
 
       // ===================== SCROLL UP =====================
-
       else if (
         hasCommand(transcript, [
           "scroll up",
@@ -354,7 +330,6 @@ recognition.maxAlternatives = 1;
       }
 
       // ===================== REFRESH =====================
-
       else if (
         hasCommand(transcript, [
           "refresh",
@@ -371,7 +346,6 @@ recognition.maxAlternatives = 1;
       }
 
       // ===================== BACK =====================
-
       else if (
         hasCommand(transcript, [
           "go back",
@@ -388,7 +362,6 @@ recognition.maxAlternatives = 1;
       }
 
       // ===================== CLOSE AI =====================
-
       else if (
         hasCommand(transcript, [
           "close ai",
@@ -409,7 +382,6 @@ recognition.maxAlternatives = 1;
       }
 
       // ===================== UNKNOWN =====================
-
       else {
         toast.error("Command Not Recognized");
       }
@@ -423,18 +395,17 @@ recognition.maxAlternatives = 1;
       setActiveAi(false);
 
       if (event.error !== "no-speech") {
-      toast.error(`Voice Error: ${event.error}`);
+        toast.error(`Voice Error: ${event.error}`);
       }
     };
 
     // ===================== END =====================
 
     recognition.onend = () => {
+      console.log("Voice Ended");
 
-  console.log("Voice Ended");
-
-  setActiveAi(false);
-};
+      setActiveAi(false);
+    };
 
     recognitionRef.current = recognition;
 
@@ -448,6 +419,11 @@ recognition.maxAlternatives = 1;
   // ===================== START LISTENING =====================
 
   const startListening = async () => {
+    if (!window.SpeechRecognition && !window.webkitSpeechRecognition) {
+      toast.error("Voice Recognition Not Supported");
+      return;
+    }
+
     try {
       await navigator.mediaDevices.getUserMedia({
         audio: {
@@ -457,35 +433,33 @@ recognition.maxAlternatives = 1;
         },
       });
 
-      if (recognitionRef.current) {
-        
+      // baaki code same
 
-setTimeout(() => {
+     if (recognitionRef.current) {
 
-  try {
+  recognitionRef.current.stop();
 
-    if (recognitionRef.current) {
+  setTimeout(() => {
+
+    try {
 
       recognitionRef.current.start();
 
       openingSound.play().catch(() => {});
 
       setActiveAi(true);
+
+    } catch (err) {
+
+      console.log(err);
+
+      toast.error("Voice Start Failed");
+
     }
 
-  } catch (err) {
+  }, 300);
 
-    console.log(err);
-
-    toast.error("Voice Start Failed");
-  }
-
-}, 300);
-
-
-
-
-      }
+}
     } catch (error) {
       console.log(error);
 
